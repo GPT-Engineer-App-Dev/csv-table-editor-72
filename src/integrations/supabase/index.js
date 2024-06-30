@@ -59,17 +59,12 @@ const fromSupabase = async (query) => {
 | name       | text        | string | false    |
 | species    | text        | string | false    |
 | image_url  | text        | string | false    |
+
 */
 
-// Hooks for chat_messages
 export const useChatMessages = () => useQuery({
     queryKey: ['chat_messages'],
     queryFn: () => fromSupabase(supabase.from('chat_messages').select('*')),
-});
-
-export const useChatMessage = (id) => useQuery({
-    queryKey: ['chat_messages', id],
-    queryFn: () => fromSupabase(supabase.from('chat_messages').select('*').eq('id', id).single()),
 });
 
 export const useAddChatMessage = () => {
@@ -102,15 +97,9 @@ export const useDeleteChatMessage = () => {
     });
 };
 
-// Hooks for tasks
 export const useTasks = () => useQuery({
     queryKey: ['tasks'],
     queryFn: () => fromSupabase(supabase.from('tasks').select('*')),
-});
-
-export const useTask = (id) => useQuery({
-    queryKey: ['tasks', id],
-    queryFn: () => fromSupabase(supabase.from('tasks').select('*').eq('id', id).single()),
 });
 
 export const useAddTask = () => {
@@ -143,15 +132,9 @@ export const useDeleteTask = () => {
     });
 };
 
-// Hooks for profiles
 export const useProfiles = () => useQuery({
     queryKey: ['profiles'],
     queryFn: () => fromSupabase(supabase.from('profiles').select('*')),
-});
-
-export const useProfile = (id) => useQuery({
-    queryKey: ['profiles', id],
-    queryFn: () => fromSupabase(supabase.from('profiles').select('*').eq('id', id).single()),
 });
 
 export const useAddProfile = () => {
@@ -184,15 +167,9 @@ export const useDeleteProfile = () => {
     });
 };
 
-// Hooks for animals
 export const useAnimals = () => useQuery({
     queryKey: ['animals'],
     queryFn: () => fromSupabase(supabase.from('animals').select('*')),
-});
-
-export const useAnimal = (id) => useQuery({
-    queryKey: ['animals', id],
-    queryFn: () => fromSupabase(supabase.from('animals').select('*').eq('id', id).single()),
 });
 
 export const useAddAnimal = () => {
