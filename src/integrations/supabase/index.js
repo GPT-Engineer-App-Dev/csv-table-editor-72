@@ -54,7 +54,7 @@ const fromSupabase = async (query) => {
 
 | name       | type        | format | required |
 |------------|-------------|--------|----------|
-| id         | int8        | number | true     |
+| id         | bigint      | number | true     |
 | created_at | timestamptz | string | true     |
 | name       | text        | string | false    |
 | species    | text        | string | false    |
@@ -62,11 +62,15 @@ const fromSupabase = async (query) => {
 
 */
 
+// Hooks for chat_messages
 export const useChatMessages = () => useQuery({
     queryKey: ['chat_messages'],
     queryFn: () => fromSupabase(supabase.from('chat_messages').select('*')),
 });
-
+export const useChatMessage = (id) => useQuery({
+    queryKey: ['chat_messages', id],
+    queryFn: () => fromSupabase(supabase.from('chat_messages').select('*').eq('id', id).single()),
+});
 export const useAddChatMessage = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -76,7 +80,6 @@ export const useAddChatMessage = () => {
         },
     });
 };
-
 export const useUpdateChatMessage = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -86,7 +89,6 @@ export const useUpdateChatMessage = () => {
         },
     });
 };
-
 export const useDeleteChatMessage = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -97,11 +99,15 @@ export const useDeleteChatMessage = () => {
     });
 };
 
+// Hooks for tasks
 export const useTasks = () => useQuery({
     queryKey: ['tasks'],
     queryFn: () => fromSupabase(supabase.from('tasks').select('*')),
 });
-
+export const useTask = (id) => useQuery({
+    queryKey: ['tasks', id],
+    queryFn: () => fromSupabase(supabase.from('tasks').select('*').eq('id', id).single()),
+});
 export const useAddTask = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -111,7 +117,6 @@ export const useAddTask = () => {
         },
     });
 };
-
 export const useUpdateTask = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -121,7 +126,6 @@ export const useUpdateTask = () => {
         },
     });
 };
-
 export const useDeleteTask = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -132,11 +136,15 @@ export const useDeleteTask = () => {
     });
 };
 
+// Hooks for profiles
 export const useProfiles = () => useQuery({
     queryKey: ['profiles'],
     queryFn: () => fromSupabase(supabase.from('profiles').select('*')),
 });
-
+export const useProfile = (id) => useQuery({
+    queryKey: ['profiles', id],
+    queryFn: () => fromSupabase(supabase.from('profiles').select('*').eq('id', id).single()),
+});
 export const useAddProfile = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -146,7 +154,6 @@ export const useAddProfile = () => {
         },
     });
 };
-
 export const useUpdateProfile = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -156,7 +163,6 @@ export const useUpdateProfile = () => {
         },
     });
 };
-
 export const useDeleteProfile = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -167,11 +173,15 @@ export const useDeleteProfile = () => {
     });
 };
 
+// Hooks for animals
 export const useAnimals = () => useQuery({
     queryKey: ['animals'],
     queryFn: () => fromSupabase(supabase.from('animals').select('*')),
 });
-
+export const useAnimal = (id) => useQuery({
+    queryKey: ['animals', id],
+    queryFn: () => fromSupabase(supabase.from('animals').select('*').eq('id', id).single()),
+});
 export const useAddAnimal = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -181,7 +191,6 @@ export const useAddAnimal = () => {
         },
     });
 };
-
 export const useUpdateAnimal = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -191,7 +200,6 @@ export const useUpdateAnimal = () => {
         },
     });
 };
-
 export const useDeleteAnimal = () => {
     const queryClient = useQueryClient();
     return useMutation({
